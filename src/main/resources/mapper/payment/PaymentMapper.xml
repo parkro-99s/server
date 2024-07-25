@@ -2,5 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.parkro.server.domain.payment.mapper.PaymentMapper">
-
+    <insert id="insertPayment" parameterType="PostPaymentReq">
+        <selectKey keyProperty="paymentId" resultType="Integer" order="BEFORE">
+            <![CDATA[
+                SELECT payment_seq.nextval AS payment_id FROM dual
+            ]]>
+        </selectKey>
+        INSERT INTO payment (
+        payment_id,
+        member_id,
+        parking_id,
+        member_coupon_id,
+        receipt_id,
+        discount_time,
+        total_parking_time,
+        total_price,
+        card,
+        payment_time,
+        payment_key,
+        cancelled_date,
+        status
+        )
+        VALUES (
+        #{paymentId},
+        #{memberId},
+        #{parkingId},
+        #{memberCouponId, jdbcType=INTEGER},
+        #{receiptId, jdbcType=INTEGER},
+        #{discountTime},
+        #{totalParkingTime},
+        #{totalPrice},
+        #{card},
+        DEFAULT,
+        #{paymentKey},
+        #{cancelledDate, jdbcType=TIMESTAMP},
+        DEFAULT
+        )
+    </insert>
 </mapper>
