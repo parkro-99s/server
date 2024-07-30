@@ -13,10 +13,10 @@
 
     <insert id="insertMember" parameterType="PostMemberReq" useGeneratedKeys="true" keyProperty="memberId" keyColumn="member_id">
     <![CDATA[
-        INSERT INTO member (member_id, username, password, nickname, phone_number, car_number, profile_car, role)
+        INSERT INTO member (member_id, username, password, nickname, phone_number, car_number, profile_car, created_date, role)
         VALUES (member_seq.NEXTVAL, #{username}, #{password}, #{nickname}, #{phoneNumber},
                 #{carNumber,jdbcType=VARCHAR},
-                1, 'ROLE_USER')
+                1, CURRENT_TIMESTAMP, 'ROLE_USER')
         ]]>
 </insert>
 

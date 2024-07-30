@@ -1,6 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.parkro.server.domain.coupon.mapper.CouponMapper">
+
+    <select id="selectCouponIdByDate" parameterType="java.util.Date" resultType="Integer">
+       <![CDATA[
+            SELECT coupon_id
+            FROM coupon
+            WHERE end_date >= #{now} AND created_date <= #{now}
+        ]]>
+    </select>
+
+    <insert id="insertCoupons" parameterType="PostMemberCouponReq">
+    <![CDATA[
+        BEGIN
+        FOR I IN 1..2 LOOP
+            INSERT INTO member_coupon (member_coupon_id, member_id, coupon_id, parking_lot_id, status, created_date, used_date)
+            VALUES (member_coupon_seq.nextval, #{memberId}, #{couponId}, NULL, 'ACTIVE', CURRENT_TIMESTAMP, NULL);
+        END LOOP;
+        END;
+        ]]>
+</insert>
+
 
 </mapper>

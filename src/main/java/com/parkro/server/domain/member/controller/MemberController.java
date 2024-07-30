@@ -1,5 +1,7 @@
 package com.parkro.server.domain.member.controller;
 
+import com.parkro.server.domain.coupon.dto.PostMemberCouponReq;
+import com.parkro.server.domain.coupon.service.CouponService;
 import com.parkro.server.domain.member.dto.GetMemberRes;
 import com.parkro.server.domain.member.dto.PostMemberReq;
 import com.parkro.server.domain.member.dto.PostSignInRes;
@@ -13,6 +15,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -43,6 +46,7 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
+    private final CouponService couponService;
 
     @GetMapping()
     public ResponseEntity<String> usernameDetails(@RequestParam("user") String username) {
@@ -54,6 +58,7 @@ public class MemberController {
 
     @PostMapping("/sign-up")
     @Validated
+    @Transactional
     public ResponseEntity memberSignUp(@Valid @RequestBody PostMemberReq postMemberReq, BindingResult bindingResult){
 
         if (bindingResult.hasErrors()) {

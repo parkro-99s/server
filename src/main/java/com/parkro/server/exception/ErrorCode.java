@@ -18,6 +18,7 @@ public enum ErrorCode {
     RECEIPT_NOT_FOUND(404, "영수증 정보를 찾을 수 없습니다."),
     FAIL_DELETE_PARKING_(404, "주차 내역 삭제에 실패했습니다."),
     INVALID_CAR_STATUS(404,"등록된 차량이 없습니다."),
+    INVALID_COUPON_ID(404,"해당 하는 쿠폰 아이디가 없습니다."),
 
     /* 409 */
     FIND_DUPLICATED_USERNAME(409, "중복된 유저 아이디 입니다."),
@@ -28,7 +29,7 @@ public enum ErrorCode {
 
     /* 500 */
     DATABASE_ERROR(500, "데이터베이스 오류가 발생했습니다."),
-    ;
+    COUPON_ERROR(500, "쿠폰 발급에 실패했습니다.");
 
     private final int status;
     private final String message;

@@ -43,6 +43,8 @@ public class PostMemberReq implements UserDetails {
 
     private String fcmToken;
 
+    private String createdDate;
+
     public String getCarNumber() {
         return carNumber != null && !carNumber.trim().isEmpty() ? carNumber : null;
     }

@@ -1,5 +1,7 @@
 package com.parkro.server.domain.member.service;
 
+import com.parkro.server.domain.coupon.dto.PostMemberCouponReq;
+import com.parkro.server.domain.coupon.service.CouponService;
 import com.parkro.server.domain.member.dto.GetMemberRes;
 import com.parkro.server.domain.member.dto.PostMemberReq;
 import com.parkro.server.domain.member.dto.PostSignInRes;
@@ -29,6 +31,7 @@ public class MemberServiceImpl implements MemberService {
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
     private final ParkingMapper parkingMapper;
+    private final CouponService couponService;
 
     @Transactional
     @Override
@@ -56,6 +59,13 @@ public class MemberServiceImpl implements MemberService {
 
         parkingMapper.updateMemberId(postMemberReq);
 
+        GetMemberRes getMemberRes = findMember(postMemberReq.getUsername());
+        long couponId = couponService.findCouponIdByDate(getMemberRes.getCreatedDate());
+        PostMemberCouponReq modifiedReq = PostMemberCouponReq.builder()
+                .memberId(getMemberRes.getMemberId())
+                .couponId(couponId)
+                .build();
+        couponService.addCoupons(modifiedReq);
     }
 
 
