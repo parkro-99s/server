@@ -46,7 +46,6 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
-    private final CouponService couponService;
 
     @GetMapping()
     public ResponseEntity<String> usernameDetails(@RequestParam("user") String username) {
@@ -84,7 +83,7 @@ public class MemberController {
 
     }
 
-    @DeleteMapping("/{username}")
+    @PatchMapping("/{username}")
     public ResponseEntity<Integer> usernameRemove(@PathVariable String username) {
 
         return ResponseEntity.ok(memberService.removeMember(username));

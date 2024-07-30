@@ -28,8 +28,7 @@ public enum ErrorCode {
     FIND_DUPLICATED_CARNUMBER(409,"이미 차량이 등록되었거나 중복된 차량이 있습니다."),
 
     /* 500 */
-    DATABASE_ERROR(500, "데이터베이스 오류가 발생했습니다."),
-    COUPON_ERROR(500, "쿠폰 발급에 실패했습니다.");
+    DATABASE_ERROR(500, "데이터베이스 오류가 발생했습니다.");
 
     private final int status;
     private final String message;

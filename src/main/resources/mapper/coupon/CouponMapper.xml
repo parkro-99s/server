@@ -23,5 +23,14 @@
         ]]>
 </insert>
 
+    <update id="deleteCoupons" parameterType="Integer">
+    <![CDATA[
+        UPDATE member_coupon
+        SET status = 'INACTIVE'
+        WHERE #{memberId} = member_id AND status = 'ACTIVE'
+        ]]>
+
+    </update>
+
 
 </mapper>

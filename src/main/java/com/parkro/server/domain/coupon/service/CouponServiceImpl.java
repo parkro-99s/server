@@ -36,4 +36,9 @@ public class CouponServiceImpl implements CouponService {
 
         couponMapper.insertCoupons(modifiedMemberCouponReq);
     }
+
+    @Override
+    public void removeCoupons(Integer memberId) {
+        couponMapper.deleteCoupons(memberId);
+    }
 }

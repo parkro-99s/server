@@ -38,7 +38,7 @@
           AND status = 'ACTIVE'
         ]]>
     </update>
-  
+
     <select id="selectMemberByUsername" parameterType="String" resultType="GetMemberRes">
         <![CDATA[
             SELECT member_id AS memberId, username, password, nickname, phone_number AS phoneNumber, role, car_number AS carNumber, profile_car AS profileCar, status, created_date AS createdDate, deleted_date AS deletedDate, fcm_token AS fcm_token

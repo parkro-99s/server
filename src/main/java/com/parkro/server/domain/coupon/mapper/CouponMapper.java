@@ -9,4 +9,5 @@ import java.util.Date;
 public interface CouponMapper {
     Integer selectCouponIdByDate(Date date);
     void insertCoupons(PostMemberCouponReq postMemberCouponReq);
+    Integer deleteCoupons(Integer memberId);
 }
